@@ -16,6 +16,6 @@ EXPOSE 8080
 
 # Run this shell command at build time
 RUN npm install
-
+# it will say that npm install needs to be run in /api on first run, just do it manually for the first one
 # Start the application
 CMD ["npm", "start"]
