@@ -28,13 +28,54 @@ app.get("/users", (req, res) => {
 
 app.get("/item", (req, res) => {
   knex("item")
-    .select("item.id")
+    .select("item.id as id")
     .select("item.Item_Name")
     .select("item.Description")
     .select("item.Quantity")
-    .select("users.id")
+    .select("users.id as UserId")
     .join("users", "item.UserId", "=", "users.id")
     .then((data) => res.status(200).json(data))
     .catch((err) => res.status(400).json(err));
 });
 
+app.get("/users/:id", (req, res) => {
+  knex("users")
+    .select("*")
+    .where("users.id", "=", req.params.id)
+    .then((data) => res.status(200).json(data))
+    .catch((err) => res.status(400).json(err));
+});
+
+app.get("/item/:id", (req, res) => {
+  knex("item")
+    .select("item.id as id")
+    .select("item.Item_Name")
+    .select("item.Description")
+    .select("item.Quantity")
+    .select("users.id as UserId")
+    .join("users", "item.UserId", "=", "users.id")
+    .where("item.id", "=", req.params.id)
+    .then((data) => res.status(200).json(data))
+    .catch((err) => res.status(400).json(err));
+});
+
+app.get("/users/username/:username", (req, res) => {
+  knex("users")
+    .select("*")
+    .where("users.Username", "=", req.params.username)
+    .then((data) => res.status(200).json(data))
+    .catch((err) => res.status(400).json(err));
+});
+
+app.get("/item/userid/:id", (req, res) => {
+  knex("item")
+    .select("item.id as id")
+    .select("item.Item_Name")
+    .select("item.Description")
+    .select("item.Quantity")
+    .select("users.id as UserId")
+    .join("users", "item.UserId", "=", "users.id")
+    .where("item.UserId", "=", req.params.id)
+    .then((data) => res.status(200).json(data))
+    .catch((err) => res.status(400).json(err));
+});
