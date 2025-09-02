@@ -79,3 +79,42 @@ app.get("/item/userid/:id", (req, res) => {
     .then((data) => res.status(200).json(data))
     .catch((err) => res.status(400).json(err));
 });
+
+app.delete("/users/:id", (req, res) => {
+  knex("item")
+    .where("item.UserId", "=", req.params.id)
+    .del()
+    .knex("users")
+    .where(`users.id`, "=", req.params.id)
+    .del()
+    .then((data) => res.status(200).json(data))
+    .then(() => console.log("done with the delete"))
+    .catch((err) => res.status(400).json(err));
+});
+
+app.delete("/item/:id", (req, res) => {
+  knex("item")
+    .where(`item.id`, "=", req.params.id)
+    .del()
+
+    .then((data) => res.status(200).json(data))
+    .then(() => console.log("done with the delete"))
+    .catch((err) => res.status(400).json(err));
+});
+
+app.post("/:table", (req, res) => {
+  knex(req.params.table)
+    .insert(req.body)
+    .then(() => console.log("done with the insert"))
+    .then((data) => res.status(200).end())
+    .catch((err) => res.status(400).json(err));
+});
+
+app.patch("/:table/:id", (req, res) => {
+  knex(req.params.table)
+    .where(`${req.params.table}.id`, "=", req.params.id)
+    .update(req.body)
+    .then(() => console.log("done with the patch"))
+    .then((data) => res.status(200).end())
+    .catch((err) => res.status(400).json(err));
+});
