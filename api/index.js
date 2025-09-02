@@ -19,21 +19,21 @@ app.get("/", (req, res) => {
   res.send("Application up and running.");
 });
 
-app.get("/Users", (req, res) => {
-  knex("Users")
+app.get("/users", (req, res) => {
+  knex("users")
     .select("*")
     .then((data) => res.status(200).json(data))
     .catch((err) => res.status(400).json(err));
 });
 
-app.get("/Item", (req, res) => {
-  knex("Item")
-    .select("Item.id")
-    .select("Item.Item_Name")
-    .select("Item.Description")
-    .select("Item.Quantity")
-    .select("Users.id")
-    .join("Users", "Item.UserId", "=", "Users.id")
+app.get("/item", (req, res) => {
+  knex("item")
+    .select("item.id")
+    .select("item.Item_Name")
+    .select("item.Description")
+    .select("item.Quantity")
+    .select("users.id")
+    .join("users", "item.UserId", "=", "users.id")
     .then((data) => res.status(200).json(data))
     .catch((err) => res.status(400).json(err));
 
