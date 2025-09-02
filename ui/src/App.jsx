@@ -7,7 +7,7 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0);
   const { data, error, isLoading } = useSWR(
-    "http://localhost:8080/locations",
+    "http://localhost:8080/Users",
     (url) =>
       fetch(url)
         .then((res) => res.json())
@@ -27,7 +27,7 @@ function App() {
     return (
       <>
         <p>
-          {data[0]['Mailing Address']}
+          {data[0]['First_Name']}
         </p>
       </>
     )

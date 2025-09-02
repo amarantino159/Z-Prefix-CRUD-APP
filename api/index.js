@@ -19,26 +19,24 @@ app.get("/", (req, res) => {
   res.send("Application up and running.");
 });
 
-app.get("/locations", (req, res) => {
-  knex("locations")
+app.get("/Users", (req, res) => {
+  knex("Users")
     .select("*")
     .then((data) => res.status(200).json(data))
     .catch((err) => res.status(400).json(err));
 });
 
-app.get("/player_nodes", (req, res) => {
-  knex("player_node")
-    .select("player_node.id as player id")
-    .select("player_node.name as player name")
-    .select("player_node.description as player description")
-    .select("player_node.clearance as player clearance")
-    .select("player_node.risk_rating as player risk level")
-    .select("player_node.risk_description as player risk description")
-    .select("player_node.affiliation as player affiliation")
-    .select("player_node.image_url as player URL")
-    .select("locations.Mailing Address as Address")
-    .join("locations", "player_node.location_id", "=", "locations.id")
+app.get("/Item", (req, res) => {
+  knex("Item")
+    .select("Item.id")
+    .select("Item.Item_Name")
+    .select("Item.Description")
+    .select("Item.Quantity")
+    .select("Users.id")
+    .join("Users", "Item.UserId", "=", "Users.id")
     .then((data) => res.status(200).json(data))
     .catch((err) => res.status(400).json(err));
+
+
 });
 
