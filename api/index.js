@@ -80,16 +80,21 @@ app.get("/item/userid/:id", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
-app.delete("/users/:id", (req, res) => {
-  knex("item")
+app.delete("/users/:id", async (req, res) => {
+
+  await knex("item")
     .where("item.UserId", "=", req.params.id)
     .del()
-    .knex("users")
-    .where(`users.id`, "=", req.params.id)
+
+  await knex("users")
+    .where("users.id", "=", req.params.id)
     .del()
+
+
     .then((data) => res.status(200).json(data))
     .then(() => console.log("done with the delete"))
-    .catch((err) => res.status(400).json(err));
+    .catch((err) => res.status(400).json(err))
+  ;
 });
 
 app.delete("/item/:id", (req, res) => {
@@ -106,15 +111,16 @@ app.post("/:table", (req, res) => {
   knex(req.params.table)
     .insert(req.body)
     .then(() => console.log("done with the insert"))
-    .then((data) => res.status(200).end())
+    .then((data) => res.status(200).json(req.body))
     .catch((err) => res.status(400).json(err));
 });
 
 app.patch("/:table/:id", (req, res) => {
+  console.log( req.body)
   knex(req.params.table)
     .where(`${req.params.table}.id`, "=", req.params.id)
     .update(req.body)
     .then(() => console.log("done with the patch"))
-    .then((data) => res.status(200).end())
+    .then((data) => res.status(200).json(req.body))
     .catch((err) => res.status(400).json(err));
 });
