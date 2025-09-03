@@ -6,10 +6,14 @@ import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigat
 import { Home } from "./pages/Home.jsx";
 import { NavigateButtons } from "./components/NavigateButtons.jsx";
 import { Login } from "./pages/Login.jsx";
+import {useUser} from "./components/UserProvider"
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0);
+  const {user,setUser} = useUser();
+  //setUser(undefined);
+
   // const navigate = useNavigate();
   // const { data, error, isLoading } = useSWR(
   //   "http://localhost:8080/Users",

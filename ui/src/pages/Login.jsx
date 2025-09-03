@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import {useUser} from "../components/UserProvider"
 // import { Gallery } from "../components/Gallery.jsx";
 
 
 
 export function Login() {
-  const [user, setUser] = useState({});
+  const [user1, setUser1] = useState({});
   const [userFound, setUserFound] = useState(-1);
   const [passMatch, setPassMatch] = useState(-1);
+  const {user,setUser} = useUser();
 
   // console.log(data[0]);
 
@@ -26,30 +28,41 @@ export function Login() {
 
 
 async function apiLog(username,password){
-    var data = await fetch(`http://localhost:8080/users/username/${username}`);
+  // setUser('usse');
+  // console.log('user '+user);
+  setPassMatch(-1);
+  setUserFound(-1);
+  // setUser1({});
+
+  const data = await fetch(`http://localhost:8080/users/username/${username}`);
     if(data.status!=200){
       setUserFound(0);
-      // console.log('userFound '+userFound);
+      setUser(undefined);
+      console.log('userFound '+userFound);
     }
     else if(data.status==200){
       const datajson = await data.json();
-      await setUser(datajson[0]);
+      const tempuser = datajson[0]
+      console.log(tempuser);
+      // await setUser1(datajson[0]);
       // await user;
       setUserFound(1);
       // console.log('userFound '+userFound);
 
       // console.log('user.Password '+user.Password)
       // console.log('password '+ password)
-      if(user.Password==password){
+      if(tempuser.Password==password){
+        setUser(tempuser);
         setPassMatch(1)
         // console.log('PassMatch '+passMatch);
       }
       else{
-        console.log('user.Password '+user.Password)
+        console.log('tempuser.Password '+tempuser.Password)
         setPassMatch(0)
+        setUser(undefined);
         // console.log('PassMatch '+passMatch);
       }
-      setUser(datajson[0]);
+      // setUser(datajson[0]);
     }
 
 
@@ -72,8 +85,8 @@ async function apiLog(username,password){
       let usernameEntered = document.getElementById('UsernameInput').value
       let passwordEntered = document.getElementById('PasswordInput').value
 
-      // console.log('user '+usernameEntered)
-      // console.log('pass '+passwordEntered)
+      console.log('user '+usernameEntered)
+      console.log('pass '+passwordEntered)
 
       apiLog(usernameEntered,passwordEntered)
 
@@ -85,7 +98,7 @@ async function apiLog(username,password){
 
     {/* Username error message and logged in as message */}
     <p> {userFound==0?'User Not Found':
-              userFound==1?'Logged in as: '+user.Username:
+              // userFound==1?'Logged in as: '+user.Username:
               ''}</p>
 
     {/* Password Error Message */}
