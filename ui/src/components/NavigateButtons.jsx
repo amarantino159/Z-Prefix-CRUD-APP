@@ -12,7 +12,7 @@ export function NavigateButtons() {
       <p>User: {user?user.Username:'Visitor'}<button onClick={()=>setUser(undefined)}>LogOut</button></p>
       <button onClick={()=>navigate('/')}>Home</button>
       <button onClick={()=>navigate('/login')}>Login</button>
-      <button onClick={()=>navigate('/')}>Create Account</button>
+      <button onClick={()=>navigate('/createaccount')}>Create Account</button>
       <button onClick={()=>navigate('/')}>Account</button>
       <button onClick={()=>navigate('/')}>Account Item Gallery</button>
       <button onClick={()=>navigate('/')}>All Items</button>

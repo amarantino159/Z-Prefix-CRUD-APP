@@ -6,8 +6,10 @@ import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigat
 import { Home } from "./pages/Home.jsx";
 import { NavigateButtons } from "./components/NavigateButtons.jsx";
 import { Login } from "./pages/Login.jsx";
+import { CreateAccount } from "./pages/CreateAccount.jsx";
 import {useUser} from "./components/UserProvider"
 import './App.css'
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -49,6 +51,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />}/>
+          <Route path="/createaccount" element={<CreateAccount />}/>
             {/* <Route index element={<Home />} /> */}
             {/* <Route path="*" element={<NoPage />} /> */}
             {/* <Route path="product/:id" element={<Details />} /> */}
