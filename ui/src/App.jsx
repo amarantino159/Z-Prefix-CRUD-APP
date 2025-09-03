@@ -7,7 +7,7 @@ import { Home } from "./pages/Home.jsx";
 import { NavigateButtons } from "./components/NavigateButtons.jsx";
 import { Login } from "./pages/Login.jsx";
 import { CreateAccount } from "./pages/CreateAccount.jsx";
-
+import { UpdateAccount } from "./pages/UpdateAccount.jsx";
 import { Account } from "./pages/Account.jsx";
 import {useUser} from "./components/UserProvider"
 import './App.css'
@@ -54,6 +54,8 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/createaccount" element={<CreateAccount />}/>
+          <Route path="/updateaccount" element={<UpdateAccount />}/>
+          {/* note for readme on update account, changes wont be visible until next login */}
           <Route path="/account" element={<Account />}/>
 
             {/* <Route index element={<Home />} /> */}
