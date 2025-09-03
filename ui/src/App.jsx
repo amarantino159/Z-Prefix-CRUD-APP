@@ -55,7 +55,6 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/createaccount" element={<CreateAccount />}/>
           <Route path="/updateaccount" element={<UpdateAccount />}/>
-          {/* note for readme on update account, changes wont be visible until next login */}
           <Route path="/account" element={<Account />}/>
 
             {/* <Route index element={<Home />} /> */}

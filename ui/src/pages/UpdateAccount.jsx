@@ -33,6 +33,7 @@ export function UpdateAccount() {
         console.log('last '+lastnameEntered)
 
         apiPatch(usernameEntered,passwordEntered,firstnameEntered,lastnameEntered,user.id)
+        setUser(undefined);
         // apiLog(usernameEntered,passwordEntered)
 
       }}>Submit</button>
