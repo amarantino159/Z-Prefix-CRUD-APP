@@ -7,6 +7,8 @@ import { Home } from "./pages/Home.jsx";
 import { NavigateButtons } from "./components/NavigateButtons.jsx";
 import { Login } from "./pages/Login.jsx";
 import { CreateAccount } from "./pages/CreateAccount.jsx";
+
+import { Account } from "./pages/Account.jsx";
 import {useUser} from "./components/UserProvider"
 import './App.css'
 
@@ -52,6 +54,8 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/createaccount" element={<CreateAccount />}/>
+          <Route path="/account" element={<Account />}/>
+
             {/* <Route index element={<Home />} /> */}
             {/* <Route path="*" element={<NoPage />} /> */}
             {/* <Route path="product/:id" element={<Details />} /> */}

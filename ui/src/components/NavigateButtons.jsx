@@ -13,7 +13,7 @@ export function NavigateButtons() {
       <button onClick={()=>navigate('/')}>Home</button>
       <button onClick={()=>navigate('/login')}>Login</button>
       <button onClick={()=>navigate('/createaccount')}>Create Account</button>
-      <button onClick={()=>navigate('/')}>Account</button>
+      <button onClick={()=>navigate('/account')}>Account</button>
       <button onClick={()=>navigate('/')}>Account Item Gallery</button>
       <button onClick={()=>navigate('/')}>All Items</button>
     </>
