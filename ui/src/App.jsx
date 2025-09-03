@@ -2,13 +2,15 @@ import { StrictMode } from "react";
 import { useState } from 'react'
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import { Home } from "./pages/Home.jsx";
+import { NavigateButtons } from "./components/NavigateButtons.jsx";
 import { Login } from "./pages/Login.jsx";
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0);
+  // const navigate = useNavigate();
   // const { data, error, isLoading } = useSWR(
   //   "http://localhost:8080/Users",
   //   (url) =>
@@ -37,16 +39,19 @@ function App() {
   // }
 
   return (
+    <>
       <BrowserRouter>
+        <NavigateButtons/>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/" element={<Home />}/>
+          <Route path="/login" element={<Login />}/>
             {/* <Route index element={<Home />} /> */}
             {/* <Route path="*" element={<NoPage />} /> */}
             {/* <Route path="product/:id" element={<Details />} /> */}
 
         </Routes>
       </BrowserRouter>
+    </>
     );
 }
 

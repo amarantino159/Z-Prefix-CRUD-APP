@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 // import { Gallery } from "../components/Gallery.jsx";
 
 export function Home() {
+  const navigate = useNavigate();
   const { data, error, isLoading } = useSWR(
     "http://localhost:8080/item",
     (url) =>
@@ -16,28 +18,15 @@ export function Home() {
   if(!isLoading){
   return (<>
     {/* <p>{data[0]['Item_Name']}</p> */}
+    {/* <button onClick={()=>navigate('/login')}>login</button> */}
 
-    <ul>
-      {data.map((elm)=>{
-      return(
-        <ol>
-          <li>
-            {elm["Item_Name"]}
-          </li>
-          <li>
-            {elm["Description"]}
-          </li>
-          <li>
-            {elm["Quantity"]}
-          </li>
-        </ol>
-        )
-      })}
-    </ul>
+
+
 
       {/* <Gallery
         data={isLoading ? Array.from({ length: 20 }) : data}
         isLoading={isLoading}
       /> */}
-  </>);}
+  </>);
+  }
 }
