@@ -15,9 +15,9 @@ export function NavigateButtons() {
       <button onClick={()=>navigate('/createaccount')}>Create Account</button>
       <button onClick={()=>navigate('/updateaccount')}>Update Account</button>
       <button onClick={()=>navigate('/account')}>Account</button>
-      <button onClick={()=>navigate('/')}>Account Item Gallery</button>
-      <button onClick={()=>navigate('/')}>All Items</button>
-
+      <button onClick={()=>navigate('/allitems')}>All Items</button>
+      <button onClick={()=>navigate('/accountinventory')}>Account Inventory</button>
+      <button onClick={()=>navigate('/additem')}>Add Item</button>
     </>
   );
 }

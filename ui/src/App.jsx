@@ -9,6 +9,9 @@ import { Login } from "./pages/Login.jsx";
 import { CreateAccount } from "./pages/CreateAccount.jsx";
 import { UpdateAccount } from "./pages/UpdateAccount.jsx";
 import { Account } from "./pages/Account.jsx";
+import { AllItems } from "./pages/AllItems.jsx";
+import { AccountInventory } from "./pages/AccountInventory.jsx";
+import { AddItem } from "./pages/AddItem.jsx";
 import {useUser} from "./components/UserProvider"
 import './App.css'
 
@@ -56,7 +59,9 @@ function App() {
           <Route path="/createaccount" element={<CreateAccount />}/>
           <Route path="/updateaccount" element={<UpdateAccount />}/>
           <Route path="/account" element={<Account />}/>
-
+          <Route path="/allitems" element={<AllItems />}/>
+          <Route path="/additem" element={<AddItem />}/>
+          <Route path="/accountinventory" element={<AccountInventory />}/>
             {/* <Route index element={<Home />} /> */}
             {/* <Route path="*" element={<NoPage />} /> */}
             {/* <Route path="product/:id" element={<Details />} /> */}

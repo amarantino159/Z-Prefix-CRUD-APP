@@ -37,9 +37,6 @@ export function Account() {
 
 async function apiDel(userid){
 
-
-
-
     const response = await fetch(`http://localhost:8080/users/${userid}`, {
     method: "DELETE",
 
