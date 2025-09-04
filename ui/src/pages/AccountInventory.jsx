@@ -33,8 +33,7 @@ export function AccountInventory() {
                 Item Name: {elm["Item_Name"]}
               </li>
               <li>
-                Description:
-                {elm["Description"].length>=100?elm["Description"].slice(0,100)+'...':elm["Description"].slice(0,100)}
+                Description: {elm["Description"].length>=100?elm["Description"].slice(0,100)+'...':elm["Description"].slice(0,100)}
               </li>
               <li>
                 Quantity: {elm["Quantity"]}

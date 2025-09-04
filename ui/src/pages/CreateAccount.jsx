@@ -42,9 +42,6 @@ export function CreateAccount() {
 //   body: JSON.stringify({ username: "example" }),
 
 //    });
-
-}
-
 async function apiPost(username,password,firstname,lastname){
   if(username&&password&&firstname&&lastname){
     const newuser = {
@@ -63,9 +60,12 @@ async function apiPost(username,password,firstname,lastname){
     body: JSON.stringify(newuser),
 
     });
+    navigate('/login')
     console.log(response);
   }
   else{
     console.log('what')
   }
 }
+}
+
