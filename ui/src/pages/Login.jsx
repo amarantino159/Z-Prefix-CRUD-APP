@@ -15,13 +15,19 @@ async function apiLog(username,password){ // function to call the password from 
   setUserFound(-1);
 
   const data = await fetch(`http://localhost:8080/users/username/${username}`); //basic fetch for the info
-    if(data.status!=200){
+  if(data.status==400){
       setUserFound(0);
       setUser(undefined);
+      alert('User Not found');
+      return;
       // console.log('userFound '+userFound);
     }
     else if(data.status==200){
       const datajson = await data.json();
+      if(datajson.length==0){
+        alert('User Not found');
+        return;
+      }
       const tempuser = datajson[0]
       // console.log(tempuser);
       setUserFound(1);

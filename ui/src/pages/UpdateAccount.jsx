@@ -44,7 +44,7 @@ export function UpdateAccount() {
 
   }
 
-}
+
 
 async function apiPatch(username,password,firstname,lastname,id){ // basic patch function
   var updateuser = {}
@@ -81,4 +81,5 @@ async function apiPatch(username,password,firstname,lastname,id){ // basic patch
     console.log(response);
 
 
+}
 }
