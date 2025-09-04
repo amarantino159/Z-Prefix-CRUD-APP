@@ -6,21 +6,35 @@ import {useUser} from "../components/UserProvider"
 
 
 
-export function AllItems() {
+export function VisitorOneItem() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
 
-  const data = fetch(`http://localhost:8080/item`)
+  async function apiget(itemname){
+    const data = fetch(`http://localhost:8080/item/name/${itemname}`)
     .then((dat)=>dat.json())
     .then(data=>{
       // console.log(data);
       setItems(data);
     });
+  }
 
-  if(items){
     // console.log(items);
     return(<>
-      <h1>All Items From All Inventory Managers</h1>
+      <h1>Search for an Item From All Inventory Managers</h1>
+      <h2>(a list of all matches is shown if item name matches several)</h2>
+      <h2>Item Name</h2>
+      <input id='ItemNameInput' type='text' defaultValue=''/>
+      <button onClick={async ()=>{
+        let ItemNameEntered = document.getElementById('ItemNameInput').value
+
+
+        console.log('item '+ItemNameEntered)
+
+        apiget(ItemNameEntered);
+
+      }}>Submit</button>
+      <p>{items.length==0?'None found':''}</p>
       <ol>
       {items.map((elm)=>{
       return(
@@ -41,7 +55,8 @@ export function AllItems() {
         )
       })}
       </ol>
+
     </>)
   }
-}
+
 

@@ -80,6 +80,32 @@ app.get("/item/userid/:id", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
+app.get("/item/name/:name", (req, res) => {
+  knex("item")
+    .select("item.id as id")
+    .select("item.Item_Name")
+    .select("item.Description")
+    .select("item.Quantity")
+    .select("users.id as UserId")
+    .join("users", "item.UserId", "=", "users.id")
+    .where("item.Item_Name", "=", req.params.name)
+    .then((data) => res.status(200).json(data))
+    .catch((err) => res.status(400).json(err));
+});
+app.get("/item/name/:name/userid/:id", (req, res) => {
+  knex("item")
+    .select("item.id as id")
+    .select("item.Item_Name")
+    .select("item.Description")
+    .select("item.Quantity")
+    .select("users.id as UserId")
+    .join("users", "item.UserId", "=", "users.id")
+    .where("item.Item_Name", "=", req.params.name)
+    .where("item.UserId", "=", req.params.id)
+    .then((data) => res.status(200).json(data))
+    .catch((err) => res.status(400).json(err));
+});
+
 app.delete("/users/:id", async (req, res) => {
 
   await knex("item")

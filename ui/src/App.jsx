@@ -12,8 +12,11 @@ import { Account } from "./pages/Account.jsx";
 import { AllItems } from "./pages/AllItems.jsx";
 import { AccountInventory } from "./pages/AccountInventory.jsx";
 import { AddItem } from "./pages/AddItem.jsx";
+
+import { VisitorOneItem } from "./pages/VisitorOneItem.jsx";
 import {useUser} from "./components/UserProvider"
 import './App.css'
+import { OneItem } from "./pages/OneItem.jsx";
 
 
 function App() {
@@ -62,6 +65,8 @@ function App() {
           <Route path="/allitems" element={<AllItems />}/>
           <Route path="/additem" element={<AddItem />}/>
           <Route path="/accountinventory" element={<AccountInventory />}/>
+          <Route path="/searchallinventories" element={<VisitorOneItem />}/>
+          <Route path="/searchaccountinventory" element={<OneItem />}/>
             {/* <Route index element={<Home />} /> */}
             {/* <Route path="*" element={<NoPage />} /> */}
             {/* <Route path="product/:id" element={<Details />} /> */}

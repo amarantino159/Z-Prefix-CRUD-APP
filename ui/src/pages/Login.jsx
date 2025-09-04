@@ -7,6 +7,7 @@ import {useUser} from "../components/UserProvider"
 
 
 export function Login() {
+  const navigate = useNavigate();
   const [user1, setUser1] = useState({});
   const [userFound, setUserFound] = useState(-1);
   const [passMatch, setPassMatch] = useState(-1);
@@ -54,6 +55,7 @@ async function apiLog(username,password){
       if(tempuser.Password==password){
         setUser(tempuser);
         setPassMatch(1)
+        navigate('/accountinventory');
         // console.log('PassMatch '+passMatch);
       }
       else{
@@ -88,7 +90,10 @@ async function apiLog(username,password){
       console.log('user '+usernameEntered)
       console.log('pass '+passwordEntered)
 
-      apiLog(usernameEntered,passwordEntered)
+      apiLog(usernameEntered,passwordEntered);
+      // if(user){
+      //   navigate('/accountinventory');
+      // }
 
     }}>Submit</button>
 

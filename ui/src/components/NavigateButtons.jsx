@@ -18,6 +18,8 @@ export function NavigateButtons() {
       <button onClick={()=>navigate('/allitems')}>All Items</button>
       <button onClick={()=>navigate('/accountinventory')}>Account Inventory</button>
       <button onClick={()=>navigate('/additem')}>Add Item</button>
+      <button onClick={()=>navigate('/searchallinventories')}>Search All Inventories</button>
+      <button onClick={()=>navigate('/searchaccountinventory')}>Search Account Inventory</button>
     </>
   );
 }
