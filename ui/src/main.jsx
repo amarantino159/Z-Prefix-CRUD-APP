@@ -5,8 +5,9 @@ import App from './App.jsx'
 import { UserProvider } from "./components/UserProvider.jsx";
 
 createRoot(document.getElementById('root')).render(
-  // <StrictMode>
+  // <StrictMode> // no idea if this one did anything
     <UserProvider>
+      {/* context wrapper */}
       <App />
     </UserProvider>
   // </StrictMode>

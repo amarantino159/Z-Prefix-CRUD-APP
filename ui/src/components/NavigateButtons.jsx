@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import {useNavigate,Link } from "react-router-dom";
 import {useUser} from "../components/UserProvider"
-// import { Gallery } from "../components/Gallery.jsx";
+
 
 export function NavigateButtons() {
   const navigate = useNavigate();
@@ -10,6 +10,8 @@ export function NavigateButtons() {
   return(
     <>
       <p>User: {user?user.Username:'Visitor'}<button onClick={()=>setUser(undefined)}>LogOut</button></p>
+      {/* above is the only non navigate button in this component but it was the best place for it */}
+      {/* below is all of teh navigation buttons so all pages are a button away from the user */}
       <button onClick={()=>navigate('/')}>Home</button>
       <button onClick={()=>navigate('/login')}>Login</button>
       <button onClick={()=>navigate('/createaccount')}>Create Account</button>

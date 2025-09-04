@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import {useUser} from "../components/UserProvider"
-// import { Gallery } from "../components/Gallery.jsx";
-
-
 
 export function OneItem() {
   const navigate = useNavigate();
@@ -30,9 +27,7 @@ export function OneItem() {
       <input id='ItemNameInput' type='text' defaultValue=''/>
       <button onClick={async ()=>{
         let ItemNameEntered = document.getElementById('ItemNameInput').value
-
-
-        console.log('item '+ItemNameEntered)
+        // console.log('item '+ItemNameEntered)
 
         apiget(ItemNameEntered);
 
@@ -44,7 +39,8 @@ export function OneItem() {
             setEdit(!edit);
             // console.log('edit '+edit);
           }}>
-          Edit Toggle: {edit?'true':'false'}
+            {/* toggle button for the editing feature */}
+          Edit Toggle: {edit?'True':'False'}
         </button>
 
       <ol>
@@ -55,6 +51,7 @@ export function OneItem() {
             <li>
               Item Name:
             </li>
+            {/* each item is editable field when the toggle says so */}
             <li contenteditable={edit?"plaintext-only":'false'}
             id={elm.id+'ItemInput'}>
               {elm["Item_Name"]}
@@ -74,6 +71,7 @@ export function OneItem() {
               {elm["Quantity"]}
             </li>
             <li>
+              {/* submission button to trigger the patch of the edits once user is done editing  */}
               <button
               onClick={()=>
               {
@@ -95,7 +93,7 @@ export function OneItem() {
               <button
               onClick={()=>{
                 apiDel(elm.id);
-                navigate('/accountinventory');
+                navigate('/accountinventory'); // after deletion the user is re navigated as described in user stories
               }}>
                 Delete Item
               </button>
@@ -115,16 +113,14 @@ export function OneItem() {
     <h1>You are currently logged out, log it to search here</h1>
     </>)
   }
-  async function apiPatch(itemname,description,quantity,id){
+
+  async function apiPatch(itemname,description,quantity,id){ // simple patch function given the new item details
   var updateitem = {
     Item_Name:itemname,
     Description:description,
     Quantity:quantity
   }
-
-
-
-    console.log(JSON.stringify(updateitem));
+    // console.log(JSON.stringify(updateitem));
 
     const response = await fetch(`http://localhost:8080/item/${id}`, {
     method: "PATCH",
@@ -137,16 +133,18 @@ export function OneItem() {
     if(response.status == 400){
       alert('Patch failed, most likely invalid type of inputs')
     }
-    console.log(response);
-
-
+    else if(response.status == 200){
+      alert('Edited Successfully')
+    }
+    // console.log(response);
 }
-async function apiDel(itemid){
+
+async function apiDel(itemid){ // very simple delete function
 
     const response = await fetch(`http://localhost:8080/item/${itemid}`, {
     method: "DELETE",
     });
-    console.log(response);
+    // console.log(response);
   }
   }
 

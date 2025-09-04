@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import {useUser} from "../components/UserProvider"
-// import { Gallery } from "../components/Gallery.jsx";
-
-
 
 export function CreateAccount() {
   const navigate = useNavigate();
   const {user,setUser} = useUser();
   return(<>
+  {/* below is the account details inputs */}
     <h1>Create Account</h1>
     <h2>UserName</h2>
     <input id='UsernameInput' type='text' defaultValue=''/>
@@ -26,33 +24,28 @@ export function CreateAccount() {
       let firstnameEntered = document.getElementById('FirstNameInput').value
       let lastnameEntered = document.getElementById('LastNameInput').value
 
-      console.log('user '+usernameEntered)
-      console.log('pass '+passwordEntered)
-      console.log('first '+firstnameEntered)
-      console.log('last '+lastnameEntered)
+      // console.log('user '+usernameEntered)
+      // console.log('pass '+passwordEntered)
+      // console.log('first '+firstnameEntered)
+      // console.log('last '+lastnameEntered)
 
       apiPost(usernameEntered,passwordEntered,firstnameEntered,lastnameEntered)
-      // apiLog(usernameEntered,passwordEntered)
 
     }}>Submit</button>
   </>)
 
-//   const response = await fetch("https://example.org/post", {
-//   method: "POST",
-//   body: JSON.stringify({ username: "example" }),
 
-//    });
 async function apiPost(username,password,firstname,lastname){
-  if(username&&password&&firstname&&lastname){
+  if(username&&password&&firstname&&lastname){ // checks that all parameters are inputted
     const newuser = {
       First_Name: firstname,
       Last_Name: lastname,
       Username: username,
       Password: password
     };
-    console.log(JSON.stringify(newuser));
+    // console.log(JSON.stringify(newuser));
 
-    const response = await fetch("http://localhost:8080/users", {
+    const response = await fetch("http://localhost:8080/users", { // basic API POST function
     method: "POST",
     headers: {
     "Content-Type": "application/json",
@@ -61,8 +54,8 @@ async function apiPost(username,password,firstname,lastname){
 
     });
 
-    console.log(response);
-    if(response.status == 400){
+    // console.log(response);
+    if(response.status == 400){ // gives the user an alert if the API server returns an error
       alert('Post failed, most likely invalid type of inputs')
     }
     else if(response.status == 200){
@@ -70,10 +63,8 @@ async function apiPost(username,password,firstname,lastname){
     }
   }
   else{
-
+    // alerts the user when the input is not good but why its not good
     alert('Patch failed, most likely invalid type of inputs')
-
-    console.log('what')
   }
 }
 }

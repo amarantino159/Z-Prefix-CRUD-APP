@@ -20,38 +20,7 @@ import { OneItem } from "./pages/OneItem.jsx";
 
 
 function App() {
-  const [count, setCount] = useState(0);
-  const {user,setUser} = useUser();
-  //setUser(undefined);
-
-  // const navigate = useNavigate();
-  // const { data, error, isLoading } = useSWR(
-  //   "http://localhost:8080/Users",
-  //   (url) =>
-  //     fetch(url)
-  //       .then((res) => res.json())
-  //       .then((json) => json)
-  // );
-  // // while(isLoading){
-  // //   console.log('wait')
-  // // }
-  // if (error) {
-  //   return <div>failed to load</div>;
-  // }
-  // // var real_data= isLoading ? Array.from({ length: 20 }) : data
-
-
-  // // console.log(isLoading);
-  // if(!isLoading){
-  //   return (
-  //     <>
-  //       <p>
-  //         {data[0]['First_Name']}
-  //       </p>
-  //     </>
-  //   )
-  // }
-
+  // All App needs to do is render <NavigateButtons/> and the <Routes/>
   return (
     <>
       <BrowserRouter>
@@ -67,10 +36,6 @@ function App() {
           <Route path="/accountinventory" element={<AccountInventory />}/>
           <Route path="/searchallinventories" element={<VisitorOneItem />}/>
           <Route path="/searchaccountinventory" element={<OneItem />}/>
-            {/* <Route index element={<Home />} /> */}
-            {/* <Route path="*" element={<NoPage />} /> */}
-            {/* <Route path="product/:id" element={<Details />} /> */}
-
         </Routes>
       </BrowserRouter>
     </>

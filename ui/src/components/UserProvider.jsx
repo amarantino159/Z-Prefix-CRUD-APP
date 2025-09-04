@@ -1,12 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 const initialState = {
-  user: undefined,
+  user: undefined, // default used to recognize a logged out visitor on the site
   setUser: () => null,
 };
 
 const UserProviderContext = createContext(initialState);
-
+// this is the context provider so each page can remember
+// the user logged in through out the site
+// didn't get local storage to work and it was bottom of the
+// barrel to get working so we can pretend it was a purposeful
+// security measure
 
 export function UserProvider({
   children,
@@ -19,6 +23,7 @@ export function UserProvider({
   );
 
   const value = {
+    // important bit: only a getter and a basic setter. nothing else
     user,
     setUser: (user) => {
       localStorage.setItem(storageKey, user);

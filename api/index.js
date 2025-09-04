@@ -19,6 +19,16 @@ app.get("/", (req, res) => {
   res.send("Application up and running.");
 });
 
+// The below is all self commenting in the sense that each route does what it describes:
+// That is a route that says "get /users/:id" is going to get the list of users with the listed id
+// "get /item/name/:name/userid/:id" gets all items by item name and user id
+// delete routes are also self explanatory though deletion is important enough that it must use the
+// unique key for the items/users
+// patch and post each are generalized since they only have the one format
+// "patch /:table/:id" means that you have to send the body of the patch and list the table and
+// id of the row to patch
+// "post /:table" is even easier since you just send the body of the add and list the table in the route
+
 app.get("/users", (req, res) => {
   knex("users")
     .select("*")
@@ -92,6 +102,7 @@ app.get("/item/name/:name", (req, res) => {
     .then((data) => res.status(200).json(data))
     .catch((err) => res.status(400).json(err));
 });
+
 app.get("/item/name/:name/userid/:id", (req, res) => {
   knex("item")
     .select("item.id as id")

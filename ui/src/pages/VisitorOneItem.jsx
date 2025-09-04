@@ -2,15 +2,12 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import {useUser} from "../components/UserProvider"
-// import { Gallery } from "../components/Gallery.jsx";
-
-
 
 export function VisitorOneItem() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
 
-  async function apiget(itemname){
+  async function apiget(itemname){ // basic get function to find one item
     const data = fetch(`http://localhost:8080/item/name/${itemname}`)
     .then((dat)=>dat.json())
     .then(data=>{
@@ -24,19 +21,20 @@ export function VisitorOneItem() {
       <h1>Search for an Item From All Inventory Managers</h1>
       <h2>(a list of all matches is shown if item name matches several)</h2>
       <h2>Item Name</h2>
+      {/* basic input for the search bar */}
       <input id='ItemNameInput' type='text' defaultValue=''/>
       <button onClick={async ()=>{
         let ItemNameEntered = document.getElementById('ItemNameInput').value
 
 
-        console.log('item '+ItemNameEntered)
+        // console.log('item '+ItemNameEntered)
 
         apiget(ItemNameEntered);
 
       }}>Submit</button>
       <p>{items.length==0?'None found':''}</p>
       <ol>
-      {items.map((elm)=>{
+      {items.map((elm)=>{ // lists all the matching items
       return(
         <li>
           <ul>
@@ -55,7 +53,6 @@ export function VisitorOneItem() {
         )
       })}
       </ol>
-
     </>)
   }
 

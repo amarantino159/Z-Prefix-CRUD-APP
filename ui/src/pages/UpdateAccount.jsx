@@ -2,15 +2,13 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import {useUser} from "../components/UserProvider"
-// import { Gallery } from "../components/Gallery.jsx";
-
-
 
 export function UpdateAccount() {
   const navigate = useNavigate();
   const {user,setUser} = useUser();
   if(user){
     return(<>
+    {/* user input for the patch */}
       <h1>Update Account</h1>
       <h2>UserName</h2>
       <input id='UsernameInput' type='text' defaultValue=''/>
@@ -22,24 +20,23 @@ export function UpdateAccount() {
       <input id='LastNameInput' type='text' defaultValue=''/>
       <br/>
       <button onClick={async ()=>{
+        // button to initiate the patch
         let usernameEntered = document.getElementById('UsernameInput').value
         let passwordEntered = document.getElementById('PasswordInput').value
         let firstnameEntered = document.getElementById('FirstNameInput').value
         let lastnameEntered = document.getElementById('LastNameInput').value
 
-        console.log('user '+usernameEntered)
-        console.log('pass '+passwordEntered)
-        console.log('first '+firstnameEntered)
-        console.log('last '+lastnameEntered)
+        // console.log('user '+usernameEntered)
+        // console.log('pass '+passwordEntered)
+        // console.log('first '+firstnameEntered)
+        // console.log('last '+lastnameEntered)
 
         apiPatch(usernameEntered,passwordEntered,firstnameEntered,lastnameEntered,user.id)
-
-        // apiLog(usernameEntered,passwordEntered)
 
       }}>Submit</button>
     </>)
   }
-  else{
+  else{ // if user is not logged in then shown a default page
     return(<>
       <h1>Account Details</h1>
       <h2>Not Logged in! Login to see Account Details</h2>
@@ -47,15 +44,9 @@ export function UpdateAccount() {
 
   }
 
-//   const response = await fetch("https://example.org/post", {
-//   method: "POST",
-//   body: JSON.stringify({ username: "example" }),
-
-//    });
-
 }
 
-async function apiPatch(username,password,firstname,lastname,id){
+async function apiPatch(username,password,firstname,lastname,id){ // basic patch function
   var updateuser = {}
 
   if(username){

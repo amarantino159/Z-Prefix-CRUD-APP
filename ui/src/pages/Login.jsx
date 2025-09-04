@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { BrowserRouter as BrowserRouter, Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import {useUser} from "../components/UserProvider"
-// import { Gallery } from "../components/Gallery.jsx";
-
-
 
 export function Login() {
   const navigate = useNavigate();
@@ -13,43 +10,22 @@ export function Login() {
   const [passMatch, setPassMatch] = useState(-1);
   const {user,setUser} = useUser();
 
-  // console.log(data[0]);
-
-  // <input id='inputtext' type='text'></input>
-  //   <button onClick={()=>{
-  //     let userinput = document.getElementById('inputtext')
-  //     if(!answered){
-  //       setChoice(userinput.value)
-  //       // if(choice == answer){
-  //       //   setPlayerScore(playerScore+2);
-  //       // }
-  //       setAnswered(true)
-  //     }
-  //   }}>Submit</button>
-
-
-async function apiLog(username,password){
-  // setUser('usse');
-  // console.log('user '+user);
+async function apiLog(username,password){ // function to call the password from the database to compare
   setPassMatch(-1);
   setUserFound(-1);
-  // setUser1({});
 
-  const data = await fetch(`http://localhost:8080/users/username/${username}`);
+  const data = await fetch(`http://localhost:8080/users/username/${username}`); //basic fetch for the info
     if(data.status!=200){
       setUserFound(0);
       setUser(undefined);
-      console.log('userFound '+userFound);
+      // console.log('userFound '+userFound);
     }
     else if(data.status==200){
       const datajson = await data.json();
       const tempuser = datajson[0]
-      console.log(tempuser);
-      // await setUser1(datajson[0]);
-      // await user;
+      // console.log(tempuser);
       setUserFound(1);
       // console.log('userFound '+userFound);
-
       // console.log('user.Password '+user.Password)
       // console.log('password '+ password)
       if(tempuser.Password==password){
@@ -59,24 +35,18 @@ async function apiLog(username,password){
         // console.log('PassMatch '+passMatch);
       }
       else{
-        console.log('tempuser.Password '+tempuser.Password)
+        // console.log('tempuser.Password '+tempuser.Password)
         setPassMatch(0)
         setUser(undefined);
         // console.log('PassMatch '+passMatch);
       }
-      // setUser(datajson[0]);
     }
-
-
-
     // console.log(user[0])
-
     return 'done'
-
   }
 
-
   return (<>
+  {/* below are inputs for logging in */}
     <h1>Login</h1>
     <h2>UserName</h2>
     <input id='UsernameInput' type='text' defaultValue=''/>
@@ -87,34 +57,20 @@ async function apiLog(username,password){
       let usernameEntered = document.getElementById('UsernameInput').value
       let passwordEntered = document.getElementById('PasswordInput').value
 
-      console.log('user '+usernameEntered)
-      console.log('pass '+passwordEntered)
+      // console.log('user '+usernameEntered)
+      // console.log('pass '+passwordEntered)
 
       apiLog(usernameEntered,passwordEntered);
-      // if(user){
-      //   navigate('/accountinventory');
-      // }
 
     }}>Submit</button>
-
-    {/* <p>User is: {user[0]?user[0].Username:'not logged in'}</p> */}
-    {/* <p>User: {user?'Found user! '+user.Username:'No User?'}</p> */}
-
-
-    {/* Username error message and logged in as message */}
+    {/* below are useState based errors so they persist on the screen */}
     <p> {userFound==0?'User Not Found':
-              // userFound==1?'Logged in as: '+user.Username:
               ''}</p>
 
     {/* Password Error Message */}
     <p> {passMatch==0?'password WRONG':
               passMatch==1?'PassMatch!':
               ''}</p>
-    {/* <p>Password:{passMatch?'PassMatch!': 'No PassMatch?'}</p> */}
-
-
-
-
   </>);
   }
 
