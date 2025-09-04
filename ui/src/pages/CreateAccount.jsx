@@ -60,10 +60,19 @@ async function apiPost(username,password,firstname,lastname){
     body: JSON.stringify(newuser),
 
     });
-    navigate('/login')
+
     console.log(response);
+    if(response.status == 400){
+      alert('Post failed, most likely invalid type of inputs')
+    }
+    else if(response.status == 200){
+      navigate('/login')
+    }
   }
   else{
+
+    alert('Patch failed, most likely invalid type of inputs')
+
     console.log('what')
   }
 }

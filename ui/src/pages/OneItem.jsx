@@ -52,27 +52,35 @@ export function OneItem() {
       return(
         <li>
           <ul>
+            <li>
+              Item Name:
+            </li>
             <li contenteditable={edit?"plaintext-only":'false'}
             id={elm.id+'ItemInput'}>
-              Item Name: {elm["Item_Name"]}
+              {elm["Item_Name"]}
             </li>
-
+            <li>
+              Description:
+            </li>
             <li contenteditable={edit?"plaintext-only":'false'}
             id={elm.id+'DescriptionInput'}>
-              Description: {elm["Description"].length>=100?elm["Description"].slice(0,100)+'...':elm["Description"].slice(0,100)}
+              {elm["Description"].length>=100?elm["Description"].slice(0,100)+'...':elm["Description"].slice(0,100)}
             </li>
-
+            <li>
+              Quantity:
+            </li>
             <li contenteditable={edit?"plaintext-only":'false'}
             id={elm.id+'QuantityInput'}>
-              Quantity: {elm["Quantity"]}
+              {elm["Quantity"]}
             </li>
             <li>
               <button
               onClick={()=>
               {
-                let itemname = document.getElementById(elm.id+'ItemInput').innerText.slice(11)
-                let description = document.getElementById(elm.id+'DescriptionInput').innerText.slice(13)
-                let quantity = document.getElementById(elm.id+'QuantityInput').innerText.slice(10)
+                let itemname = document.getElementById(elm.id+'ItemInput').innerText
+                let description = document.getElementById(elm.id+'DescriptionInput').innerText
+                let quantity = document.getElementById(elm.id+'QuantityInput').innerText
+
                 // console.log('itemname '+itemname)
                 // console.log('description '+description)
                 // console.log('quantity '+quantity)
@@ -126,6 +134,9 @@ export function OneItem() {
     body: JSON.stringify(updateitem),
 
     });
+    if(response.status == 400){
+      alert('Patch failed, most likely invalid type of inputs')
+    }
     console.log(response);
 
 

@@ -33,7 +33,7 @@ export function UpdateAccount() {
         console.log('last '+lastnameEntered)
 
         apiPatch(usernameEntered,passwordEntered,firstnameEntered,lastnameEntered,user.id)
-        setUser(undefined);
+
         // apiLog(usernameEntered,passwordEntered)
 
       }}>Submit</button>
@@ -81,6 +81,12 @@ async function apiPatch(username,password,firstname,lastname,id){
     body: JSON.stringify(updateuser),
 
     });
+    if(response.status == 400){
+      alert('Patch failed, most likely invalid type of inputs')
+    }
+    else if(response.status == 200){
+      setUser(undefined);
+    }
     console.log(response);
 
 

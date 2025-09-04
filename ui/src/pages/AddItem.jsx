@@ -72,8 +72,15 @@ async function apiPost(itemname,description,quantity,id){
 
     });
     console.log(response);
+    if(response.status == 400){
+      alert('Post failed, most likely invalid type of inputs')
+    }
+
   }
   else{
+
+      alert('Post failed, most likely invalid type of inputs')
+
     console.log('what')
   }
 }
